@@ -24,31 +24,24 @@ const dashboardRoutes = require("./routes/dashboardRoutes");
 // Initialize Express
 const app = express();
 
-// Global Middleware
+// Global middleware
 app.use(cors());
 app.use(express.json());
 
-// Test Route
+// Home route
 app.get("/", (req, res) => {
   res.send("Subscription Management System API is running!");
 });
 
-// Authentication Routes
+// Authentication routes
 app.use("/api/auth", authRoutes);
 
-// Admin Test Route
-app.get(
-  "/api/admin-test",
-  protect,
-  authorize("admin"),
-  (req, res) => {
-    res.json({
-      message: "Welcome Admin!",
-    });
-  }
-);
+// Admin test route
+app.get("/api/admin-test", protect, authorize("admin"), (req, res) => {
+  res.json({ message: "Welcome Admin!" });
+});
 
-// Protected Test Route
+// Protected test route
 app.get("/api/protected", protect, (req, res) => {
   res.json({
     message: "You accessed a protected route!",
@@ -56,25 +49,15 @@ app.get("/api/protected", protect, (req, res) => {
   });
 });
 
-// Staff Management
+// Application routes
 app.use("/api/staff", staffRoutes);
-
-// Customer Management
 app.use("/api/customers", customerRoutes);
-
-// Product Management
 app.use("/api/products", productRoutes);
-
-// Plan Management
 app.use("/api/plans", planRoutes);
-
-// Subscription Management
 app.use("/api/subscriptions", subscriptionRoutes);
-
-// Dashboard Statistics
 app.use("/api/dashboard", dashboardRoutes);
 
-// Start Server
+// Start server
 const PORT = process.env.PORT || 5000;
 
 const startServer = async () => {
