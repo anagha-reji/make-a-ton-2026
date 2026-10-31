@@ -1,0 +1,3 @@
+/* DEVELOPER 2 – staff pages */
+.quick{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:14px}
+.quick a{background:var(--gl);color:var(--g);font-weight:600;font-size:14px;padding:10px 16px;border-radius:10px}

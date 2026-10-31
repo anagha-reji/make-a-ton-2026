@@ -1,26 +1,19 @@
-import PageHeader from "../../components/PageHeader";
-import PlanCard from "../../components/PlanCard";
-import useFetch from "../../hooks/useFetch";
-import { getPlans } from "../../services/subscriptionService";
+import PageHeader from '../../components/PageHeader';
+import PlanCard from '../../components/PlanCard';
+import { useToast } from '../../components/Toast';
+import { plans } from '../../data/mockData';
+import '../../styles/customer.css';
 
 export default function BrowsePlans() {
-  const { data: plans, loading } = useFetch(getPlans);
-
+  const toast = useToast();
   return (
     <>
-      <PageHeader 
-        title="Browse Plans" 
-        subtitle="Manage your browse plans" 
-      />
-      {loading ? (
-        <p className="muted">Loading...</p>
-      ) : (
-        <div className="plans">
-          {plans?.map((p) => (
-            <PlanCard key={p.id} plan={p} onSubscribe={() => alert(`Subscribed to ${p.name}`)} />
-          ))}
-        </div>
-      )}
+      <PageHeader title="Browse Plans" subtitle="Compare plans and subscribe" />
+      <div className="grid g3">
+        {plans.map((p, i) => (
+          <PlanCard key={p.name} plan={p} popular={i === 1} onSubscribe={(pl) => toast(`Subscription to ${pl.name} confirmed ✓`)} />
+        ))}
+      </div>
     </>
   );
 }

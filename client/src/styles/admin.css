@@ -1,0 +1,4 @@
+/* DEVELOPER 2 – admin pages */
+.shortcuts{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px}
+.shortcuts a{border:1px solid var(--bd);background:var(--card);font-weight:600;font-size:14px;padding:9px 16px;border-radius:99px}
+.shortcuts a:hover{border-color:var(--g);color:var(--g)}
